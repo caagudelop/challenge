@@ -57,13 +57,13 @@ public class PermissionAlbumService {
 		
 		if(p == null) {
 			permissionAlbumRepo.save(permisoAlbum);
+			return "Guardado con exito";
 		}	else {
 			
 			p.setPermisos(permisoAlbum.getPermisos());
 			permissionAlbumRepo.save(p);
+			return "Modificado con exito";
 		}
-		
-		return "guardado con exito";
 	}
 	
 	@RequestMapping(value = "findAll", method = RequestMethod.POST)
@@ -83,7 +83,7 @@ public class PermissionAlbumService {
 	}
 	
 	@RequestMapping(value = "/permisosAlbum", method = RequestMethod.POST)
-	public String permisosAlbum(@RequestParam("id") Integer albumId, @RequestParam("permiso") String permiso) {
+	public String permisosAlbum(@RequestParam("albumId") Integer albumId, @RequestParam("permiso") String permiso) {
 
 		List<PermissionAlbum> listaAlbum = (List<PermissionAlbum>) permissionAlbumRepo.findListByAlbumPermission(albumId, permiso);
 		
